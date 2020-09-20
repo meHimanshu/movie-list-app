@@ -16,7 +16,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Navbar() {
+export default function Navbar(props) {
+  const {setOpenModal} = props;
+  
   const classes = useStyles();
 
   return (
@@ -26,7 +28,7 @@ export default function Navbar() {
           <Typography variant="h6" className={classes.title}>
             Movie List App
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button color="inherit" onClick={() => setOpenModal(true)}>Login</Button>
         </Toolbar>
       </AppBar>
     </div>
