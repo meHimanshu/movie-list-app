@@ -1,0 +1,20 @@
+{
+  "name": "movie-list-server",
+  "version": "1.0.0",
+  "scripts": {
+    "client": "cd client && yarn start",
+    "server": "nodemon server/index.js",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.16.4",
+    "mongoose": "^5.10.6",
+    "nodemon": "^2.0.4"
+  },
+  "devDependencies": {
+    "concurrently": "^4.0.1",
+    "natives": "^1.1.6"
+  }
+}
