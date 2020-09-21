@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 // import IconButton from '@material-ui/core/IconButton';
 // import MenuIcon from '@material-ui/icons/Menu';
-import {AppBar,Toolbar, Typography, Button} from "@material-ui/core";
+import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,9 +17,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Navbar(props) {
-  const {setOpenModal} = props;
-  
+  const { setOpenModal, setLoggedIn, loggedIn } = props;
+
   const classes = useStyles();
+  const logout = () => {
+    setLoggedIn(false);
+    localStorage.clear()
+  };
 
   return (
     <div className={classes.root}>
@@ -28,7 +32,13 @@ export default function Navbar(props) {
           <Typography variant="h6" className={classes.title}>
             Movie List App
           </Typography>
-          <Button color="inherit" onClick={() => setOpenModal(true)}>Login</Button>
+          {loggedIn?
+            <Button color="inherit" onClick={logout}>
+            Logout
+            </Button>:
+            <Button color="inherit" onClick={() => setOpenModal(true)}>
+              Login
+          </Button>}
         </Toolbar>
       </AppBar>
     </div>

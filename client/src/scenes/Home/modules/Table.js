@@ -1,7 +1,11 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {Table, TableBody, TableCell,
-     TableContainer, TableHead, TableRow, Paper} from "@material-ui/core";
+import {
+  Table, TableBody, TableCell, IconButton,
+  TableContainer, TableHead, TableRow, Paper
+} from "@material-ui/core";
+import { AddShoppingCart } from '@material-ui/icons';
+
 
 import data from "./data";
 
@@ -12,7 +16,8 @@ const useStyles = makeStyles({
 });
 
 
-export default function SimpleTable() {
+export default function SimpleTable(props) {
+  const { loggedIn } = props;
   const classes = useStyles();
 
   return (
@@ -25,6 +30,8 @@ export default function SimpleTable() {
             <TableCell align="right">Director</TableCell>
             <TableCell align="right">Genre</TableCell>
             <TableCell align="right">IMDB_SCORE</TableCell>
+            {loggedIn && <TableCell align="right">Activity</TableCell>}
+
           </TableRow>
         </TableHead>
         <TableBody>
@@ -37,7 +44,9 @@ export default function SimpleTable() {
               <TableCell align="right">{row.director}</TableCell>
               <TableCell align="right">{row.genre}</TableCell>
               <TableCell align="right">{row.imdb_score}</TableCell>
-
+              {loggedIn  && <IconButton color="primary" aria-label="add to shopping cart">
+                <AddShoppingCart />
+              </IconButton>}
             </TableRow>
           ))}
         </TableBody>

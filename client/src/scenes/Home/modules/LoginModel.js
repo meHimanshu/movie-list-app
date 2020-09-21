@@ -5,21 +5,23 @@ import {
 } from "@material-ui/core";
 
 export default function LoginModel(props) {
-    const { setOpenModal } = props;
+    const { setOpenModal, setLoggedIn } = props;
     const [content, setContent] = useState({})
 
 
     const handleClose = async () => {
         const {username, password} = content;
-        console.log("content----",content);
-        const result = await fetch('http://localhost:7000/api/user/login',
+        let result = await fetch('http://localhost:7000/api/user/login',
         {
         method: 'POST',
-        mode: "same-origin",
         headers: {'Content-Type':'application/json'},
         body:JSON.stringify({username, password})
     });
-        console.log("fetch result -----------",result);
+        result = await result.json()
+        if(result && result.isAuthenticated){
+            localStorage.setItem("isAuthenticated","true");
+            setLoggedIn(true);
+        }
         setOpenModal(false);
     };
 
