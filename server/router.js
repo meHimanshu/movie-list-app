@@ -12,6 +12,8 @@ router.post(`/user/login`, userController.login);
 
 
 router.get(`/movies/list`, movieController.list);
+router.post(`/movies`, movieController.post);
+
 // router.get(`/movies/:id`, movieController.getOne);
 // router.put(`/movie/:id`, movieController.add);
 // router.patch(`/movie/:id`, movieController.update);

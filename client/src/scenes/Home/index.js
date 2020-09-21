@@ -21,7 +21,7 @@ export default function Home(props){
     return(
         <div>
             <Navbar setOpenModal={setOpenModal} setLoggedIn={setLoggedIn} loggedIn={loggedIn} />
-            <Table loggedIn={loggedIn}/>
+            <Table loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
             {openModal && <LoginModel setLoggedIn={setLoggedIn} setOpenModal={setOpenModal} />}
         </div>
     )

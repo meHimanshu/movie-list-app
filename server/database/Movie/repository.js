@@ -15,9 +15,9 @@ class MovieRepository{
         return this.model.create(query);
     }
 
-    async getAll(){
+    async getAll(query){
         console.log("MovieRepository:::::getAll");
-        return this.model.find({});
+        return this.model.find(query);
     }
 
     async getById(id){
