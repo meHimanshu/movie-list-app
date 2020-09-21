@@ -4,11 +4,16 @@ class movieController {
     async list(req, res, next) {
         try {
             const { searchText } = req.query;
+            const { filter } = req.body;
             const condition = {};
             console.log("Movie Controller list");
             const regex = new RegExp(searchText,"gi");
             if(searchText){
                 condition["$or"]=[{name: regex}, {director: regex}]
+            }
+            if(filter.length){
+                condition["$and"] = [{...condition},{ genre: {"$all":filter}}];
+                delete condition["$or"];
             }
             console.log("condition------------",condition);
             const result = await movieRepository.getAll(condition);
@@ -41,20 +46,6 @@ class movieController {
         }
 
     }
-
-    // async getOne(req, res, next) {
-    //     try {
-    //         console.log("Movie Controller getOne");
-    //         const { id } = req.params;
-    //         const saltRounds = 10;
-    //         console.log(req.body);
-    //         const result = movieRepository.getById({ _id: id });
-    //         console.log(" result iis-----------", result);
-    //     } catch (error) {
-    //         next(error);
-    //     }
-
-    // }
 }
 
 module.exports = new movieController();

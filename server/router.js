@@ -11,7 +11,7 @@ console.log("inside router--------------------");
 router.post(`/user/login`, userController.login);
 
 
-router.get(`/movies/list`, movieController.list);
+router.post(`/movies/list`, movieController.list);
 router.post(`/movies`, movieController.post);
 
 // router.get(`/movies/:id`, movieController.getOne);

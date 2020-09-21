@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Table, TableBody, TableCell, IconButton, Box, InputBase,
-  TableContainer, TableHead, TableRow, Paper
+  TableContainer, TableHead, TableRow, Paper, Select, Chip, Input, MenuItem, Button
 } from "@material-ui/core";
 import { AddShoppingCart, Search } from '@material-ui/icons';
 import MovieModal from "./MovieModel";
@@ -14,19 +14,36 @@ const useStyles = makeStyles({
   },
 });
 
+const genres = ["Action", "Adventure", "Classic", "Comedy", "Romance", "Horror", "Thriller",
+"Drama","Biopic","Documentry","Animation", "Fantasy"]
+
+const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: 48 * 4.5 + 8,
+        width: 250,
+      },
+    },
+  };
 
 
 export default function SimpleTable(props) {
   const { loggedIn, setLoggedIn } = props;
   const classes = useStyles();
   const [data, setData] = useState([]);
-  const [addModal,setAddModal] = useState(false)
+  const [addModal, setAddModal] = useState(false)
   const [selectedData, setSelectedData] = useState();
   const [searchText, setSearchText] = useState("");
+  const [filter, setFilter] = useState([]);
 
   const fetchData = async () => {
     console.log("fetched data------------------");
-    let result = await fetch(`http://localhost:7000/api/movies/list?searchText=${searchText}`);
+    let result = await fetch(`http://localhost:7000/api/movies/list?searchText=${searchText}`,
+    {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body:JSON.stringify({filter})
+    });
     result = await result.json()
     if (result && result.data) {
       setData(result.data);
@@ -39,7 +56,7 @@ export default function SimpleTable(props) {
     setAddModal(true);
   }
 
-  useEffect( () => {
+  useEffect(() => {
     console.log("useEffect-----")
     fetchData();
   }, []);
@@ -49,7 +66,7 @@ export default function SimpleTable(props) {
     <Paper>
       <Box m={10}>
         <Box>
-          {loggedIn && <IconButton aria-label="delete" onClick={() => setAddModal(true)} className={classes.margin} size="small">
+          {loggedIn && <IconButton onClick={() => setAddModal(true)} className={classes.margin} size="small">
             <AddShoppingCart fontSize="inherit" />
           </IconButton>}
           <Box ml={3} component="span">
@@ -62,6 +79,32 @@ export default function SimpleTable(props) {
             <IconButton onClick={fetchData} className={classes.iconButton} aria-label="search">
               <Search />
             </IconButton>
+          </Box>
+          <Box component="span" ml={3}>
+            <Select
+              labelId="demo-mutiple-chip-label"
+              id="demo-mutiple-chip"
+              multiple
+              value={filter}
+              label={"genre"}
+              onChange={(event) => setFilter(event.target.value)}
+              input={<Input id="select-multiple-chip" />}
+              renderValue={(selected) => {
+                return <div >
+                  {filter.map((value) => (
+                    <Chip key={value} label={value} />
+                  ))}
+                </div>
+              }}
+              MenuProps={MenuProps}
+            >
+              {genres.map((name) => (
+                <MenuItem key={name} value={name} >
+                  {name}
+                </MenuItem>
+              ))}
+            </Select>
+            <Button size="small" onClick={fetchData} variant="outlined" color="primary">Filter</Button>
           </Box>
         </Box>
         <TableContainer component={Paper}>
@@ -96,7 +139,7 @@ export default function SimpleTable(props) {
           </Table>
         </TableContainer>
       </Box>
-      {addModal && <MovieModal setSelectedData={setSelectedData} data={selectedData} setLoggedIn={setLoggedIn} setOpenModal={setAddModal}/>}
+      {addModal && <MovieModal setSelectedData={setSelectedData} data={selectedData} setLoggedIn={setLoggedIn} setOpenModal={setAddModal} />}
     </Paper>
   );
 }
