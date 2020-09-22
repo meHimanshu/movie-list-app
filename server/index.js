@@ -46,7 +46,7 @@ app.use((req, res) => {
 
 // error handler, send stacktrace only during development
 // this.app.use(errorHandler(stack));
-mongoose.connect('mongodb://localhost/user', { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
 app.listen(port, () => console.log(`Listening on port ${port}`));
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
