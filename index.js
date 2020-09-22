@@ -14,7 +14,7 @@ const seedInitials = require("./server/seed");
 const app = express();
 const port = process.env.PORT || 7000;
 
-
+console.log("envssss-", process.env);
 
 app.use(cors({
   optionsSuccessStatus: 200,
