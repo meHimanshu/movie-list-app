@@ -11,7 +11,7 @@ export default function LoginModel(props) {
 
     const handleClose = async () => {
         const {username, password} = content;
-        let result = await fetch('http://localhost:7000/api/user/login',
+        let result = await fetch('https://movaistapp.herokuapp.com/api/user/login',
         {
         method: 'POST',
         headers: {'Content-Type':'application/json'},
