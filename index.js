@@ -9,8 +9,8 @@ dotenv.config()
 
 
 
-const router = require("./router");
-const seedInitials = require("./seed");
+const router = require("./server/router");
+const seedInitials = require("./server/seed");
 const app = express();
 const port = process.env.PORT || 7000;
 
@@ -35,11 +35,11 @@ app.use('/api',router);
 // catch 404 and forward to error handler
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files
-  app.use(express.static(path.join(__dirname, '..client/build')));
+  app.use(express.static(path.join(__dirname, 'client/build')));
     
   // Handle React routing, return all requests to React app
   app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
 }
 
