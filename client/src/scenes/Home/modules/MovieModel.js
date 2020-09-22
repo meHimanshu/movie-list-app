@@ -28,7 +28,7 @@ export default function MovieModal(props) {
         setOpenModal(false);
         fetchData({
             method: isUpdate ? "PUT":"POST",
-            url: `http://localhost:7000/api/movies/${path}`,
+            url: `https://movaistapp.herokuapp.com/api/movies/${path}`,
             body: {
                 ...content, "popularity": content["99popularity"]
             },

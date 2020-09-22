@@ -64,7 +64,7 @@ export default function SimpleTable(props) {
     const { method, id, refetch, url, body} = data;
     const requestBody = body || { filter }
     const path = id ? id : `list?searchText=${searchText}`
-    let result = await fetch(url || `http://localhost:7000/api/movies/${path}`,
+    let result = await fetch(url || `https://movaistapp.herokuapp.com/api/movies/${path}`,
       {
         method: method || 'POST',
         headers: { 'Content-Type': 'application/json' },
