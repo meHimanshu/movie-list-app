@@ -1,11 +1,11 @@
 const mongoose = require("mongoose")
 
 const movieSchema = new mongoose.Schema({
-    '99popularity': Number,
-    director: String,
+    '99popularity': {type:Number, required:true},
+    director: {type:String, required:true},
     genre: [String],
-    imdb_score: Number,
-    name: String,
+    imdb_score: {type:Number, required:true},
+    name: {type:String, required:true},
     updatedBy: String
 })
 
