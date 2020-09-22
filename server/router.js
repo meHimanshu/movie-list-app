@@ -6,20 +6,14 @@ const movieController = require("./controller/movie")
 
 const router = express.Router();
 
-console.log("inside router--------------------");
-
+// ------------------user routes----------------------------
 router.post(`/user/login`, userController.login);
 
 
+// ------------------movie routes----------------------------
 router.post(`/movies/list`, movieController.list);
 router.post(`/movies`, movieController.post);
-
-// router.get(`/movies/:id`, movieController.getOne);
-// router.put(`/movie/:id`, movieController.add);
-// router.patch(`/movie/:id`, movieController.update);
-
-
-
-
+router.put(`/movies/:id`, movieController.put);
+router.delete(`/movies/:id`, movieController.delete);
 
 module.exports = router;

@@ -20,9 +20,16 @@ class MovieRepository{
         return this.model.find(query);
     }
 
-    async getById(id){
+    async update(query){
+        const { id, ...rest} = query;
         console.log("MovieRepository:::::getAll",id);
-        return this.model.findOne({_id:id});
+        return this.model.updateOne({_id:id}, {$set: rest});
+    }
+
+    async delete(query){
+        const { id } = query;
+        console.log("MovieRepository:::::getAll",id);
+        return this.model.deleteOne({_id:id});
     }
 }
 
