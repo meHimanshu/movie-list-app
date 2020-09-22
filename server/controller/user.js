@@ -5,9 +5,8 @@ const bcrypt = require('bcrypt');
 class userController {
     async login(req, res, next) {
         try {
-            console.log("User Controller Login");
+            console.log("User Controller Login",req.body);
             const { username, password } = req.body;
-            const saltRounds = 10;
             console.log(req.body);
 
             const adminData = await userRepository.getByQuery({ username });
