@@ -37,7 +37,6 @@ export default function MovieModal(props) {
     };
 
     const handleChange = (event, field) => {
-        console.log("data-----", field);
         setContent({
             ...content,
             [field]: event.target.value

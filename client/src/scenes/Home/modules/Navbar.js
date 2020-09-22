@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 // import IconButton from '@material-ui/core/IconButton';
 // import MenuIcon from '@material-ui/icons/Menu';
-import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
+import { AppBar, Toolbar, Typography, Button, Tooltip } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,9 +36,11 @@ export default function Navbar(props) {
             <Button color="inherit" onClick={logout}>
             Logout
             </Button>:
+            <Tooltip title="Username=admin,Password=admin">
             <Button color="inherit" onClick={() => setOpenModal(true)}>
               Login
-          </Button>}
+          </Button>
+          </Tooltip>}
         </Toolbar>
       </AppBar>
     </div>

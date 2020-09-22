@@ -88,7 +88,6 @@ export default function SimpleTable(props) {
   console.log("data",data,data.length);
 
   useEffect(() => {
-    console.log("useEffect-----")
     fetchData();
   }, []);
   
@@ -100,8 +99,8 @@ export default function SimpleTable(props) {
   }
 
   return (
-      <Box m={10}>
-        <Box>
+      <Box m={3}>
+        <Box display="flex" m={2}>
           {loggedIn && <IconButton onClick={() => setAddModal(true)} className={classes.margin} size="small">
             <AddBox color="primary" />
           </IconButton>}
@@ -116,7 +115,7 @@ export default function SimpleTable(props) {
               <Search />
             </IconButton>
           </Box>
-          <Box component="span" ml={3}>
+          <Box display="inline" ml={3}>
           <Typography display="inline" >Filter by genres: </Typography>
             <Select
               labelId="demo-mutiple-chip-label"
@@ -179,7 +178,7 @@ export default function SimpleTable(props) {
                   </TableCell>
                   <TableCell align="right">{row["99popularity"]}</TableCell>
                   <TableCell align="right">{row.director}</TableCell>
-                  <TableCell align="right">{row.genre}</TableCell>
+                  <TableCell align="right">{row.genre.join(", ")}</TableCell>
                   <TableCell align="right">{row.imdb_score}</TableCell>
                   {loggedIn && <Box display="flex">
                   <IconButton key={row._id} onClick={(e) => editMovie(e, row)} aria-label="add to shopping cart">
