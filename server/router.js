@@ -1,19 +1,19 @@
 const express = require("express")
 
-const userController = require("./controller/user")
-const movieController = require("./controller/movie")
+const movieHandler = require("./handler/movie")
+const errorHandler = require("./middlewares/errorHandler");
+const { validateSearch, validateId } = require("./middlewares/validators");
+
 
 
 const router = express.Router();
 
-// ------------------user routes----------------------------
-router.post(`/user/login`, userController.login);
+// Movie routes
+router.get(`/movies/search`, validateSearch, movieHandler.search);
+router.get(`/movies/:id`, validateId, movieHandler.getById);
 
 
-// ------------------movie routes----------------------------
-router.post(`/movies/list`, movieController.list);
-router.post(`/movies`, movieController.post);
-router.put(`/movies/:id`, movieController.put);
-router.delete(`/movies/:id`, movieController.delete);
+// Call the error handling middleware
+router.use(errorHandler);
 
 module.exports = router;

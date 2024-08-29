@@ -1,0 +1,29 @@
+.chartsModuleContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #000; // Black background
+    padding: 20px;
+  }
+  
+  .chartsContainer {
+    background-color: #fff;
+    padding: 20px;
+    width: 90%;
+    height: calc(100vh - 80px); // Full height minus navbar height and padding
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .chartsContainer .formControl {
+    margin-bottom: 20px;
+  }
+  
+  .chartsContainer .button {
+    margin-bottom: 20px;
+  }
+  

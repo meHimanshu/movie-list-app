@@ -1,0 +1,57 @@
+.root {
+    height: calc(100vh - 200px);
+    background-image: url('https://wallpapers.com/images/hd/collage-of-movie-posters-g2fdqahxlakaa7yq.jpg'); // Use the provided image URL
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(2px); // Apply the blur effect
+      z-index: 1;
+    }
+  }
+  
+  .formContainer {
+    position: relative;
+    z-index: 2;
+    background-color: rgba(240, 240, 240, 0.8); // Make the background a little grey
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+  
+  .input {
+    margin-bottom: 1rem;
+  }
+  
+  .button {
+    background-color: black !important; // Red
+    color: rgb(196, 72, 0) !important;
+    &:hover {
+      background-color: rgb(196, 72, 0) !important;
+      color: black !important;// Maroon
+    }
+  }
+  
+  .title {
+    font-weight: bold;
+    span {
+      color: rgb(196, 72, 0);
+      font-weight: bold ;
+    }
+  }
+
+  .googleButton {
+    margin-top: 1rem;
+  }
+  

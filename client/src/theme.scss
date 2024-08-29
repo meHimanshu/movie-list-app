@@ -1,0 +1,36 @@
+$primary-color: #ff0000; // Red
+$secondary-color: #000000; // Black
+$background-color: #ffffff; // White
+
+body {
+  background-color: $background-color;
+  color: $secondary-color;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: $primary-color;
+  text-decoration: none;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $secondary-color;
+}
+
+button {
+  background-color: $primary-color;
+  color: $background-color;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}
